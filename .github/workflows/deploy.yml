@@ -52,7 +52,7 @@ jobs:
           publish-dir: './dist'
           production-branch: main
           deploy-message: 'Deploy from GitHub Actions 🚀'
-          netlify-config-path: "./netlify.toml"
+          netlify-config-path: './.netlify.toml'
           # enable-pull-request-comment: false
           # enable-commit-comment: true
           # overwrites-pull-request-comment: true
