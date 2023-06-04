@@ -7,6 +7,7 @@ on:
 
 jobs:
   test:
+    name: 'Test Code'
     runs-on: ubuntu-latest
 
     steps:
@@ -24,14 +25,13 @@ jobs:
       - name: Run tests
         run: yarn test
 
- deploy:
-    name: "deploy to netlify"
+  deploy:
+    name: 'Deploy to Netlify'
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
     steps:
-       steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -49,9 +49,9 @@ jobs:
       - name: Deploy to Netlify 🚀
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./dist"
+          publish-dir: './dist'
           production-branch: main
-          deploy-message: "Deploy from GitHub Actions 🚀"
+          deploy-message: 'Deploy from GitHub Actions 🚀'
           # enable-pull-request-comment: false
           # enable-commit-comment: true
           # overwrites-pull-request-comment: true
