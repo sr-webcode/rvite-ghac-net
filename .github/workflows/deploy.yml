@@ -24,11 +24,14 @@ jobs:
       - name: Run tests
         run: yarn test
 
-  deploy:
+ deploy:
+    name: "deploy to netlify"
     needs: test
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
 
     steps:
+       steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -40,13 +43,20 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build project
+      - name: Build files
         run: yarn build
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@v1
+      - name: Deploy to Netlify 🚀
+        uses: nwtgck/actions-netlify@v1.2
         with:
-          args: deploy --prod --dir=build
+          publish-dir: "./dist"
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions 🚀"
+          # enable-pull-request-comment: false
+          # enable-commit-comment: true
+          # overwrites-pull-request-comment: true
+          # netlify-config-path: "./netlify.toml"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
