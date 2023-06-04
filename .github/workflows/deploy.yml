@@ -46,13 +46,13 @@ jobs:
       - name: Build files
         run: yarn build
 
-      - name: Deploy to Netlify 🚀
+      - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './dist'
           production-branch: main
-          deploy-message: 'Deploy from GitHub Actions 🚀'
-          netlify-config-path: './.netlify.toml'
+          deploy-message: 'Deployed Site 🚀'
+          netlify-config-path: './netlify.toml'
           # enable-pull-request-comment: false
           # enable-commit-comment: true
           # overwrites-pull-request-comment: true
